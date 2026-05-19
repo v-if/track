@@ -1,0 +1,98 @@
+{
+  "@@locale": "ko",
+  "appTitle": "트랙 페이스 계산기",
+  "settings": "설정",
+  "settingsTooltip": "설정",
+  "selectLane": "레인 선택",
+  "lapCount": "랩 카운트",
+  "lapUnit": "랩",
+  "goalTime": "목표 시간",
+  "secondsUnit": "초",
+  "allLanesPace": "레인별 페이스표",
+  "laneLabel": "{lane}레인",
+  "@laneLabel": {
+    "placeholders": {
+      "lane": { "type": "int" }
+    }
+  },
+  "paceGuideTitle": "페이스 가이드",
+  "paceGuideMessage": "이 페이스는 목표시간 {seconds}초로 {laps}랩({lane}레인)를 뛰었을 때의 1km 기준 페이스 입니다.",
+  "@paceGuideMessage": {
+    "placeholders": {
+      "seconds": { "type": "int" },
+      "laps": { "type": "int" },
+      "lane": { "type": "int" }
+    }
+  },
+  "resultSubtitle": "{lane}레인 · {laps}랩 · {seconds}초",
+  "@resultSubtitle": {
+    "placeholders": {
+      "lane": { "type": "int" },
+      "laps": { "type": "int" },
+      "seconds": { "type": "int" }
+    }
+  },
+  "sectionGeneral": "일반",
+  "sectionLanguage": "언어",
+  "sectionInfo": "정보",
+  "resetInput": "입력 초기화",
+  "resetSubtitle": "레인 1 · 랩 1 · 90초",
+  "resetButton": "초기화",
+  "resetDialogTitle": "입력 초기화",
+  "resetDialogMessage": "레인 1, 랩 카운트 1, 목표 시간 90초로 되돌립니다.",
+  "cancel": "취소",
+  "languageKorean": "한국어",
+  "languageKoreanSubtitle": "Korean",
+  "languageEnglish": "English",
+  "languageEnglishSubtitle": "영어",
+  "aboutMe": "About me",
+  "aboutMeSubtitle": "개발자 정보",
+  "devVersion": "개발 버전 v{version} ({build})",
+  "@devVersion": {
+    "placeholders": {
+      "version": { "type": "String" },
+      "build": { "type": "int" }
+    }
+  },
+  "resetSuccess": "입력값이 초기화되었습니다.",
+  "maxSecondsNotice": "목표 시간은 최대 3600초(60분)까지 설정할 수 있습니다.",
+  "durationSecondsOnly": "{seconds}초",
+  "@durationSecondsOnly": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
+  "durationMinutesOnly": "{minutes}분",
+  "@durationMinutesOnly": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "durationMinutesSeconds": "{minutes}분 {seconds}초",
+  "@durationMinutesSeconds": {
+    "placeholders": {
+      "minutes": { "type": "int" },
+      "seconds": { "type": "int" }
+    }
+  },
+  "developer": "개발자",
+  "intro": "소개",
+  "threads": "Threads",
+  "threadsHandle": "@{username}",
+  "@threadsHandle": {
+    "placeholders": {
+      "username": { "type": "String" }
+    }
+  },
+  "usedLibraries": "사용 라이브러리",
+  "developerBio": "“트랙에서 90초로 뛰면,\n이게 몇 분 페이스일까?”\n\n러닝을 하며 한 번쯤 고민했던 질문에서\n이 앱이 시작되었습니다.\n\n레인에 따라 달라지는 거리까지 반영해\n보다 정확한 페이스를 제공합니다.\n\n복잡함은 줄이고,\n필요한 기능만 담았습니다.\n\n더 집중된 훈련을 위해,\n트랙 페이스 계산기.",
+  "linkOpenFailed": "링크를 열 수 없습니다.",
+  "copyright": "© 2026 트랙 페이스 계산기",
+  "versionBuild": "v{version} (build {build})",
+  "@versionBuild": {
+    "placeholders": {
+      "version": { "type": "String" },
+      "build": { "type": "int" }
+    }
+  }
+}
