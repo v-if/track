@@ -8,11 +8,12 @@ class LocaleController extends ChangeNotifier {
 
   static final LocaleController instance = LocaleController._();
 
-  Locale _locale = const Locale(LocaleStorage.koreanCode);
+  Locale _locale = LocaleStorage.defaultLocale;
 
   Locale get locale => _locale;
 
-  bool get isKorean => _locale.languageCode == LocaleStorage.koreanCode;
+  bool isSelected(String languageCode) =>
+      _locale.languageCode == languageCode;
 
   Future<void> initialize() async {
     _locale = await LocaleStorage.loadLocale();
@@ -20,15 +21,24 @@ class LocaleController extends ChangeNotifier {
   }
 
   Future<void> setLocale(Locale locale) async {
-    if (_locale == locale) {
+    final resolved = LocaleStorage.localeForLanguageCode(locale.languageCode);
+    if (_locale == resolved) {
       return;
     }
-    _locale = locale;
-    await LocaleStorage.saveLocale(locale);
+    _locale = resolved;
+    await LocaleStorage.saveLocale(resolved);
     notifyListeners();
   }
 
-  Future<void> setKorean() => setLocale(const Locale(LocaleStorage.koreanCode));
+  Future<void> setEnglish() =>
+      setLocale(const Locale(LocaleStorage.englishCode));
 
-  Future<void> setEnglish() => setLocale(const Locale(LocaleStorage.englishCode));
+  Future<void> setKorean() =>
+      setLocale(const Locale(LocaleStorage.koreanCode));
+
+  Future<void> setJapanese() =>
+      setLocale(const Locale(LocaleStorage.japaneseCode));
+
+  Future<void> setChinese() =>
+      setLocale(const Locale(LocaleStorage.chineseCode));
 }

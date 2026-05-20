@@ -9,6 +9,7 @@ import '../models/training_input.dart';
 import '../services/input_storage.dart';
 import '../services/pace_calculator.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_spacing.dart';
 import '../utils/time_format.dart';
 import '../widgets/all_lanes_list.dart';
 import '../widgets/app_bar_title.dart';
@@ -205,12 +206,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
+                  padding: const EdgeInsets.fromLTRB(
+                    AppSpacing.sm,
+                    AppSpacing.xs + 4,
+                    AppSpacing.sm,
+                    AppSpacing.sm + 4,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       _HeaderFieldLabel(l10n.selectLane),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: AppSpacing.xs + 2),
                       LaneSelector(
                         selectedLane: _lane,
                         onLaneSelected: _onLaneSelected,
@@ -220,7 +226,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.sm,
+                  AppSpacing.sm + 4,
+                  AppSpacing.sm,
+                  AppSpacing.md,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -233,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       step: 1,
                       onChanged: _onLapsChanged,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: AppSpacing.xs),
                     ValueInputRow(
                       label: l10n.goalTime,
                       value: _seconds,
@@ -242,20 +253,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       min: minSeconds,
                       max: maxSeconds,
                       step: 1,
+                      allowDirectEdit: true,
                       onChanged: _onSecondsChanged,
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: AppSpacing.sm),
                     PaceHeroCard(
                       paceText: heroPaceFromDisplay(output.selected.displayPace),
                       subtitle: subtitle,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: AppSpacing.md),
                     PaceGuideBanner(
                       lane: _lane,
                       laps: _laps,
                       seconds: _seconds,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: AppSpacing.xs),
                     AllLanesList(
                       results: output.allLanes,
                       selectedLane: _lane,

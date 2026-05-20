@@ -81,16 +81,39 @@ class AppLocalizationsKo extends AppLocalizations {
   String get cancel => '취소';
 
   @override
+  String get ok => '확인';
+
+  @override
+  String get directEditInvalid => '숫자를 입력하세요';
+
+  @override
+  String directEditRange(int min, int max) {
+    return '$min–$max초 범위로 입력하세요';
+  }
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageEnglishSubtitle => '기본';
+
+  @override
   String get languageKorean => '한국어';
 
   @override
   String get languageKoreanSubtitle => 'Korean';
 
   @override
-  String get languageEnglish => 'English';
+  String get languageJapanese => '日本語';
 
   @override
-  String get languageEnglishSubtitle => '영어';
+  String get languageJapaneseSubtitle => 'Japanese';
+
+  @override
+  String get languageChinese => '中文';
+
+  @override
+  String get languageChineseSubtitle => 'Chinese';
 
   @override
   String get aboutMe => 'About me';

@@ -10,9 +10,28 @@
   "secondsUnit": " sec",
   "allLanesPace": "Pace by lane",
   "laneLabel": "Lane {lane}",
+  "@laneLabel": {
+    "placeholders": {
+      "lane": { "type": "int" }
+    }
+  },
   "paceGuideTitle": "Pace guide",
   "paceGuideMessage": "This pace is the per-km pace when you run {laps} lap(s) on lane {lane} in {seconds} seconds.",
+  "@paceGuideMessage": {
+    "placeholders": {
+      "seconds": { "type": "int" },
+      "laps": { "type": "int" },
+      "lane": { "type": "int" }
+    }
+  },
   "resultSubtitle": "Lane {lane} · {laps} lap(s) · {seconds}s",
+  "@resultSubtitle": {
+    "placeholders": {
+      "lane": { "type": "int" },
+      "laps": { "type": "int" },
+      "seconds": { "type": "int" }
+    }
+  },
   "sectionGeneral": "General",
   "sectionLanguage": "Language",
   "sectionInfo": "Info",
@@ -22,25 +41,71 @@
   "resetDialogTitle": "Reset input",
   "resetDialogMessage": "Reset to lane 1, 1 lap, and 90 seconds.",
   "cancel": "Cancel",
+  "ok": "OK",
+  "directEditInvalid": "Enter a valid number",
+  "directEditRange": "Enter a value between {min} and {max} seconds",
+  "@directEditRange": {
+    "placeholders": {
+      "min": { "type": "int" },
+      "max": { "type": "int" }
+    }
+  },
+  "languageEnglish": "English",
+  "languageEnglishSubtitle": "Default",
   "languageKorean": "한국어",
   "languageKoreanSubtitle": "Korean",
-  "languageEnglish": "English",
-  "languageEnglishSubtitle": "English",
+  "languageJapanese": "日本語",
+  "languageJapaneseSubtitle": "Japanese",
+  "languageChinese": "中文",
+  "languageChineseSubtitle": "Chinese",
   "aboutMe": "About me",
   "aboutMeSubtitle": "Developer info",
   "devVersion": "Dev version v{version} ({build})",
+  "@devVersion": {
+    "placeholders": {
+      "version": { "type": "String" },
+      "build": { "type": "int" }
+    }
+  },
   "resetSuccess": "Input has been reset.",
   "maxSecondsNotice": "Goal time can be set up to 3600 seconds (60 minutes).",
   "durationSecondsOnly": "{seconds}s",
+  "@durationSecondsOnly": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
   "durationMinutesOnly": "{minutes} min",
+  "@durationMinutesOnly": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
   "durationMinutesSeconds": "{minutes} min {seconds} sec",
+  "@durationMinutesSeconds": {
+    "placeholders": {
+      "minutes": { "type": "int" },
+      "seconds": { "type": "int" }
+    }
+  },
   "developer": "Developer",
   "intro": "About",
   "threads": "Threads",
   "threadsHandle": "@{username}",
+  "@threadsHandle": {
+    "placeholders": {
+      "username": { "type": "String" }
+    }
+  },
   "usedLibraries": "Libraries used",
   "developerBio": "\"If I run 90 seconds on the track,\nwhat pace per km is that?\"\n\nThis app started from a question\nrunners ask themselves at least once.\n\nWe factor in lane distance differences\nto deliver a more accurate pace.\n\nLess complexity—\nonly what you need.\n\nFor more focused training:\nTrack Pace Calculator.",
   "linkOpenFailed": "Could not open the link.",
   "copyright": "© 2026 Track Pace Calculator",
-  "versionBuild": "v{version} (build {build})"
+  "versionBuild": "v{version} (build {build})",
+  "@versionBuild": {
+    "placeholders": {
+      "version": { "type": "String" },
+      "build": { "type": "int" }
+    }
+  }
 }

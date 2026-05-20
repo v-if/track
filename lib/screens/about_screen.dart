@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../config/app_config.dart';
 import '../data/app_libraries.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_spacing.dart';
 import '../widgets/app_bar_title.dart';
 import '../widgets/app_branding.dart';
 
@@ -45,12 +46,12 @@ class AboutScreen extends StatelessWidget {
         title: AppBarTitle(l10n.aboutMe),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppSpacing.sm),
         child: Column(
           children: [
-            const SizedBox(height: 8),
+            const SizedBox(height: AppSpacing.xs),
             AppBranding(iconSize: 88),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppSpacing.md),
             _InfoCard(
               children: [
                 _InfoRow(
@@ -63,14 +64,15 @@ class AboutScreen extends StatelessWidget {
                   handle: l10n.threadsHandle(AppConfig.threadsUsername),
                   onTap: () => _openThreadsProfile(context),
                 ),
-                const Divider(height: 24),
+                const Divider(height: AppSpacing.md),
                 _InfoRow(
                   label: l10n.intro,
                   value: l10n.developerBio,
+                  isBio: true,
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.sm),
             _InfoCard(
               children: [
                 Text(
@@ -90,7 +92,7 @@ class AboutScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.sm),
             Text(
               l10n.copyright,
               style: TextStyle(
@@ -115,7 +117,7 @@ class _InfoCard extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.cardWhite,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.06),
@@ -139,10 +141,12 @@ class _InfoRow extends StatelessWidget {
   const _InfoRow({
     required this.label,
     required this.value,
+    this.isBio = false,
   });
 
   final String label;
   final String value;
+  final bool isBio;
 
   @override
   Widget build(BuildContext context) {
@@ -157,12 +161,12 @@ class _InfoRow extends StatelessWidget {
             color: AppColors.textLabel,
           ),
         ),
-        const SizedBox(height: 6),
+        SizedBox(height: isBio ? AppSpacing.xs : 6),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 15,
-            height: 1.5,
+          style: TextStyle(
+            fontSize: isBio ? 14 : 15,
+            height: isBio ? 1.55 : 1.45,
             color: AppColors.textPrimary,
           ),
         ),

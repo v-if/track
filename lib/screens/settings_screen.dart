@@ -5,6 +5,7 @@ import '../services/input_storage.dart';
 import '../services/locale_controller.dart';
 import '../services/locale_storage.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_spacing.dart';
 import '../widgets/app_branding.dart';
 import '../widgets/app_bar_title.dart';
 import '../widgets/settings_card.dart';
@@ -38,9 +39,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       setState(() {});
     }
   }
-
-  bool get _isKorean =>
-      _localeController.locale.languageCode == LocaleStorage.koreanCode;
 
   Future<void> _showResetDialog() async {
     final l10n = AppLocalizations.of(context);
@@ -81,9 +79,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  List<({String label, String subtitle, String code, Future<void> Function() onSelect})>
+      _languageOptions(AppLocalizations l10n) {
+    return [
+      (
+        label: l10n.languageEnglish,
+        subtitle: l10n.languageEnglishSubtitle,
+        code: LocaleStorage.englishCode,
+        onSelect: _localeController.setEnglish,
+      ),
+      (
+        label: l10n.languageKorean,
+        subtitle: l10n.languageKoreanSubtitle,
+        code: LocaleStorage.koreanCode,
+        onSelect: _localeController.setKorean,
+      ),
+      (
+        label: l10n.languageJapanese,
+        subtitle: l10n.languageJapaneseSubtitle,
+        code: LocaleStorage.japaneseCode,
+        onSelect: _localeController.setJapanese,
+      ),
+      (
+        label: l10n.languageChinese,
+        subtitle: l10n.languageChineseSubtitle,
+        code: LocaleStorage.chineseCode,
+        onSelect: _localeController.setChinese,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final languageOptions = _languageOptions(l10n);
 
     return Scaffold(
       backgroundColor: AppColors.scaffoldBg,
@@ -91,7 +120,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: AppBarTitle(l10n.settings),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppSpacing.sm),
         children: [
           SettingsCard(
             title: l10n.sectionGeneral,
@@ -101,37 +130,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: l10n.resetInput,
                 subtitle: l10n.resetSubtitle,
                 showChevron: false,
-                trailing: OutlinedButton(
+                trailing: TextButton(
                   onPressed: _showResetDialog,
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: AppColors.primary,
-                    side: const BorderSide(color: AppColors.primary),
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.textMuted,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    minimumSize: const Size(0, 36),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
-                  child: Text(l10n.resetButton),
+                  child: Text(
+                    l10n.resetButton,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: AppSpacing.sm + 4),
           SettingsCard(
             title: l10n.sectionLanguage,
             children: [
-              _LanguageOption(
-                label: l10n.languageKorean,
-                subtitle: l10n.languageKoreanSubtitle,
-                selected: _isKorean,
-                onTap: _localeController.setKorean,
-              ),
-              _LanguageOption(
-                label: l10n.languageEnglish,
-                subtitle: l10n.languageEnglishSubtitle,
-                selected: !_isKorean,
-                onTap: _localeController.setEnglish,
-              ),
+              for (var i = 0; i < languageOptions.length; i++)
+                _LanguageOption(
+                  label: languageOptions[i].label,
+                  subtitle: languageOptions[i].subtitle,
+                  selected: _localeController.isSelected(languageOptions[i].code),
+                  onTap: () => languageOptions[i].onSelect(),
+                ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: AppSpacing.sm + 4),
           SettingsCard(
             title: l10n.sectionInfo,
             children: [
@@ -143,11 +174,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: AppSpacing.lg),
           Center(
             child: AppBranding(compact: true),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: AppSpacing.md),
         ],
       ),
     );

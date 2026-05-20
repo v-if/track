@@ -6,7 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_ja.dart';
 import 'app_localizations_ko.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,264 +97,308 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('ja'),
     Locale('ko'),
+    Locale('zh'),
   ];
 
   /// No description provided for @appTitle.
   ///
-  /// In ko, this message translates to:
-  /// **'트랙 페이스 계산기'**
+  /// In en, this message translates to:
+  /// **'Track Pace Calculator'**
   String get appTitle;
 
   /// No description provided for @settings.
   ///
-  /// In ko, this message translates to:
-  /// **'설정'**
+  /// In en, this message translates to:
+  /// **'Settings'**
   String get settings;
 
   /// No description provided for @settingsTooltip.
   ///
-  /// In ko, this message translates to:
-  /// **'설정'**
+  /// In en, this message translates to:
+  /// **'Settings'**
   String get settingsTooltip;
 
   /// No description provided for @selectLane.
   ///
-  /// In ko, this message translates to:
-  /// **'레인 선택'**
+  /// In en, this message translates to:
+  /// **'Select lane'**
   String get selectLane;
 
   /// No description provided for @lapCount.
   ///
-  /// In ko, this message translates to:
-  /// **'랩 카운트'**
+  /// In en, this message translates to:
+  /// **'Lap count'**
   String get lapCount;
 
   /// No description provided for @lapUnit.
   ///
-  /// In ko, this message translates to:
-  /// **'랩'**
+  /// In en, this message translates to:
+  /// **' laps'**
   String get lapUnit;
 
   /// No description provided for @goalTime.
   ///
-  /// In ko, this message translates to:
-  /// **'목표 시간'**
+  /// In en, this message translates to:
+  /// **'Goal time'**
   String get goalTime;
 
   /// No description provided for @secondsUnit.
   ///
-  /// In ko, this message translates to:
-  /// **'초'**
+  /// In en, this message translates to:
+  /// **' sec'**
   String get secondsUnit;
 
   /// No description provided for @allLanesPace.
   ///
-  /// In ko, this message translates to:
-  /// **'레인별 페이스표'**
+  /// In en, this message translates to:
+  /// **'Pace by lane'**
   String get allLanesPace;
 
   /// No description provided for @laneLabel.
   ///
-  /// In ko, this message translates to:
-  /// **'{lane}레인'**
+  /// In en, this message translates to:
+  /// **'Lane {lane}'**
   String laneLabel(int lane);
 
   /// No description provided for @paceGuideTitle.
   ///
-  /// In ko, this message translates to:
-  /// **'페이스 가이드'**
+  /// In en, this message translates to:
+  /// **'Pace guide'**
   String get paceGuideTitle;
 
   /// No description provided for @paceGuideMessage.
   ///
-  /// In ko, this message translates to:
-  /// **'이 페이스는 목표시간 {seconds}초로 {laps}랩({lane}레인)를 뛰었을 때의 1km 기준 페이스 입니다.'**
+  /// In en, this message translates to:
+  /// **'This pace is the per-km pace when you run {laps} lap(s) on lane {lane} in {seconds} seconds.'**
   String paceGuideMessage(int seconds, int laps, int lane);
 
   /// No description provided for @resultSubtitle.
   ///
-  /// In ko, this message translates to:
-  /// **'{lane}레인 · {laps}랩 · {seconds}초'**
+  /// In en, this message translates to:
+  /// **'Lane {lane} · {laps} lap(s) · {seconds}s'**
   String resultSubtitle(int lane, int laps, int seconds);
 
   /// No description provided for @sectionGeneral.
   ///
-  /// In ko, this message translates to:
-  /// **'일반'**
+  /// In en, this message translates to:
+  /// **'General'**
   String get sectionGeneral;
 
   /// No description provided for @sectionLanguage.
   ///
-  /// In ko, this message translates to:
-  /// **'언어'**
+  /// In en, this message translates to:
+  /// **'Language'**
   String get sectionLanguage;
 
   /// No description provided for @sectionInfo.
   ///
-  /// In ko, this message translates to:
-  /// **'정보'**
+  /// In en, this message translates to:
+  /// **'Info'**
   String get sectionInfo;
 
   /// No description provided for @resetInput.
   ///
-  /// In ko, this message translates to:
-  /// **'입력 초기화'**
+  /// In en, this message translates to:
+  /// **'Reset input'**
   String get resetInput;
 
   /// No description provided for @resetSubtitle.
   ///
-  /// In ko, this message translates to:
-  /// **'레인 1 · 랩 1 · 90초'**
+  /// In en, this message translates to:
+  /// **'Lane 1 · 1 lap · 90 sec'**
   String get resetSubtitle;
 
   /// No description provided for @resetButton.
   ///
-  /// In ko, this message translates to:
-  /// **'초기화'**
+  /// In en, this message translates to:
+  /// **'Reset'**
   String get resetButton;
 
   /// No description provided for @resetDialogTitle.
   ///
-  /// In ko, this message translates to:
-  /// **'입력 초기화'**
+  /// In en, this message translates to:
+  /// **'Reset input'**
   String get resetDialogTitle;
 
   /// No description provided for @resetDialogMessage.
   ///
-  /// In ko, this message translates to:
-  /// **'레인 1, 랩 카운트 1, 목표 시간 90초로 되돌립니다.'**
+  /// In en, this message translates to:
+  /// **'Reset to lane 1, 1 lap, and 90 seconds.'**
   String get resetDialogMessage;
 
   /// No description provided for @cancel.
   ///
-  /// In ko, this message translates to:
-  /// **'취소'**
+  /// In en, this message translates to:
+  /// **'Cancel'**
   String get cancel;
 
-  /// No description provided for @languageKorean.
+  /// No description provided for @ok.
   ///
-  /// In ko, this message translates to:
-  /// **'한국어'**
-  String get languageKorean;
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
 
-  /// No description provided for @languageKoreanSubtitle.
+  /// No description provided for @directEditInvalid.
   ///
-  /// In ko, this message translates to:
-  /// **'Korean'**
-  String get languageKoreanSubtitle;
+  /// In en, this message translates to:
+  /// **'Enter a valid number'**
+  String get directEditInvalid;
+
+  /// No description provided for @directEditRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a value between {min} and {max} seconds'**
+  String directEditRange(int min, int max);
 
   /// No description provided for @languageEnglish.
   ///
-  /// In ko, this message translates to:
+  /// In en, this message translates to:
   /// **'English'**
   String get languageEnglish;
 
   /// No description provided for @languageEnglishSubtitle.
   ///
-  /// In ko, this message translates to:
-  /// **'영어'**
+  /// In en, this message translates to:
+  /// **'Default'**
   String get languageEnglishSubtitle;
+
+  /// No description provided for @languageKorean.
+  ///
+  /// In en, this message translates to:
+  /// **'한국어'**
+  String get languageKorean;
+
+  /// No description provided for @languageKoreanSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get languageKoreanSubtitle;
+
+  /// No description provided for @languageJapanese.
+  ///
+  /// In en, this message translates to:
+  /// **'日本語'**
+  String get languageJapanese;
+
+  /// No description provided for @languageJapaneseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get languageJapaneseSubtitle;
+
+  /// No description provided for @languageChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'中文'**
+  String get languageChinese;
+
+  /// No description provided for @languageChineseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese'**
+  String get languageChineseSubtitle;
 
   /// No description provided for @aboutMe.
   ///
-  /// In ko, this message translates to:
+  /// In en, this message translates to:
   /// **'About me'**
   String get aboutMe;
 
   /// No description provided for @aboutMeSubtitle.
   ///
-  /// In ko, this message translates to:
-  /// **'개발자 정보'**
+  /// In en, this message translates to:
+  /// **'Developer info'**
   String get aboutMeSubtitle;
 
   /// No description provided for @devVersion.
   ///
-  /// In ko, this message translates to:
-  /// **'개발 버전 v{version} ({build})'**
+  /// In en, this message translates to:
+  /// **'Dev version v{version} ({build})'**
   String devVersion(String version, int build);
 
   /// No description provided for @resetSuccess.
   ///
-  /// In ko, this message translates to:
-  /// **'입력값이 초기화되었습니다.'**
+  /// In en, this message translates to:
+  /// **'Input has been reset.'**
   String get resetSuccess;
 
   /// No description provided for @maxSecondsNotice.
   ///
-  /// In ko, this message translates to:
-  /// **'목표 시간은 최대 3600초(60분)까지 설정할 수 있습니다.'**
+  /// In en, this message translates to:
+  /// **'Goal time can be set up to 3600 seconds (60 minutes).'**
   String get maxSecondsNotice;
 
   /// No description provided for @durationSecondsOnly.
   ///
-  /// In ko, this message translates to:
-  /// **'{seconds}초'**
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
   String durationSecondsOnly(int seconds);
 
   /// No description provided for @durationMinutesOnly.
   ///
-  /// In ko, this message translates to:
-  /// **'{minutes}분'**
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
   String durationMinutesOnly(int minutes);
 
   /// No description provided for @durationMinutesSeconds.
   ///
-  /// In ko, this message translates to:
-  /// **'{minutes}분 {seconds}초'**
+  /// In en, this message translates to:
+  /// **'{minutes} min {seconds} sec'**
   String durationMinutesSeconds(int minutes, int seconds);
 
   /// No description provided for @developer.
   ///
-  /// In ko, this message translates to:
-  /// **'개발자'**
+  /// In en, this message translates to:
+  /// **'Developer'**
   String get developer;
 
   /// No description provided for @intro.
   ///
-  /// In ko, this message translates to:
-  /// **'소개'**
+  /// In en, this message translates to:
+  /// **'About'**
   String get intro;
 
   /// No description provided for @threads.
   ///
-  /// In ko, this message translates to:
+  /// In en, this message translates to:
   /// **'Threads'**
   String get threads;
 
   /// No description provided for @threadsHandle.
   ///
-  /// In ko, this message translates to:
+  /// In en, this message translates to:
   /// **'@{username}'**
   String threadsHandle(String username);
 
   /// No description provided for @usedLibraries.
   ///
-  /// In ko, this message translates to:
-  /// **'사용 라이브러리'**
+  /// In en, this message translates to:
+  /// **'Libraries used'**
   String get usedLibraries;
 
   /// No description provided for @developerBio.
   ///
-  /// In ko, this message translates to:
-  /// **'“트랙에서 90초로 뛰면,\n이게 몇 분 페이스일까?”\n\n러닝을 하며 한 번쯤 고민했던 질문에서\n이 앱이 시작되었습니다.\n\n레인에 따라 달라지는 거리까지 반영해\n보다 정확한 페이스를 제공합니다.\n\n복잡함은 줄이고,\n필요한 기능만 담았습니다.\n\n더 집중된 훈련을 위해,\n트랙 페이스 계산기.'**
+  /// In en, this message translates to:
+  /// **'\"If I run 90 seconds on the track,\nwhat pace per km is that?\"\n\nThis app started from a question\nrunners ask themselves at least once.\n\nWe factor in lane distance differences\nto deliver a more accurate pace.\n\nLess complexity—\nonly what you need.\n\nFor more focused training:\nTrack Pace Calculator.'**
   String get developerBio;
 
   /// No description provided for @linkOpenFailed.
   ///
-  /// In ko, this message translates to:
-  /// **'링크를 열 수 없습니다.'**
+  /// In en, this message translates to:
+  /// **'Could not open the link.'**
   String get linkOpenFailed;
 
   /// No description provided for @copyright.
   ///
-  /// In ko, this message translates to:
-  /// **'© 2026 트랙 페이스 계산기'**
+  /// In en, this message translates to:
+  /// **'© 2026 Track Pace Calculator'**
   String get copyright;
 
   /// No description provided for @versionBuild.
   ///
-  /// In ko, this message translates to:
+  /// In en, this message translates to:
   /// **'v{version} (build {build})'**
   String versionBuild(String version, int build);
 }
@@ -368,7 +414,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'ko'].contains(locale.languageCode);
+      <String>['en', 'ja', 'ko', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -379,8 +425,12 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'ja':
+      return AppLocalizationsJa();
     case 'ko':
       return AppLocalizationsKo();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

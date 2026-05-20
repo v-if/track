@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/app_spacing.dart';
 
 /// 설정 화면 공통 카드 섹션.
 class SettingsCard extends StatelessWidget {
@@ -34,7 +35,7 @@ class SettingsCard extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             color: AppColors.cardWhite,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.06),

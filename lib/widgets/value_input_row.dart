@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:track/l10n/app_localizations.dart';
 
 import '../theme/app_colors.dart';
-import 'scale_tap.dart';
+import '../theme/app_spacing.dart';
+import 'step_hold_button.dart';
 
 /// 바퀴 수 / 목표 시간 공통 입력 행.
 class ValueInputRow extends StatelessWidget {
@@ -15,6 +18,7 @@ class ValueInputRow extends StatelessWidget {
     required this.step,
     required this.onChanged,
     this.subtitle,
+    this.allowDirectEdit = false,
   });
 
   final String label;
@@ -25,77 +29,132 @@ class ValueInputRow extends StatelessWidget {
   final int step;
   final ValueChanged<int> onChanged;
   final String? subtitle;
+  final bool allowDirectEdit;
 
   static const double _baseHeight = 72;
   static const double _withSubtitleHeight = 88;
 
   double get _height => subtitle != null ? _withSubtitleHeight : _baseHeight;
 
+  Future<void> _showDirectEditDialog(BuildContext context) async {
+    final controller = TextEditingController(text: '$value');
+    final result = await showDialog<int>(
+      context: context,
+      builder: (dialogContext) {
+        return _DirectEditDialog(
+          title: label,
+          controller: controller,
+          min: min,
+          max: max,
+        );
+      },
+    );
+    if (result != null) {
+      onChanged(result);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final canDecrease = value - step >= min;
-    final canIncrease = value + step <= max;
+    final canDecrease = value > min;
+    final canIncrease = value < max;
 
     return SizedBox(
       height: _height,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: AppColors.cardWhite,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 6,
+              offset: const Offset(0, 1),
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
           child: Row(
             children: [
-              _RoundButton(
+              StepHoldButton(
                 icon: Icons.remove,
                 enabled: canDecrease,
-                onTap: () => onChanged(value - step),
+                onStep: (amount) {
+                  final next = (value - amount).clamp(min, max);
+                  if (next != value) {
+                    onChanged(next);
+                  }
+                },
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      label,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: AppColors.textLabel,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      '$value$unit',
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                    if (subtitle != null) ...[
-                      const SizedBox(height: 2),
-                      Text(
-                        subtitle!,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          color: AppColors.textLabel,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: allowDirectEdit
+                        ? () => _showDirectEditDialog(context)
+                        : null,
+                    borderRadius: BorderRadius.circular(8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          label,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textLabel,
+                          ),
                         ),
-                      ),
-                    ],
-                  ],
+                        const SizedBox(height: 4),
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 120),
+                          switchInCurve: Curves.easeOut,
+                          switchOutCurve: Curves.easeIn,
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: ScaleTransition(
+                                scale: Tween<double>(begin: 0.96, end: 1)
+                                    .animate(animation),
+                                child: child,
+                              ),
+                            );
+                          },
+                          child: Text(
+                            '$value$unit',
+                            key: ValueKey<int>(value),
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ),
+                        if (subtitle != null) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            subtitle!,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: AppColors.textMuted,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              _RoundButton(
+              StepHoldButton(
                 icon: Icons.add,
                 enabled: canIncrease,
-                onTap: () => onChanged(value + step),
+                onStep: (amount) {
+                  final next = (value + amount).clamp(min, max);
+                  if (next != value) {
+                    onChanged(next);
+                  }
+                },
               ),
             ],
           ),
@@ -105,40 +164,70 @@ class ValueInputRow extends StatelessWidget {
   }
 }
 
-class _RoundButton extends StatelessWidget {
-  const _RoundButton({
-    required this.icon,
-    required this.enabled,
-    required this.onTap,
+class _DirectEditDialog extends StatefulWidget {
+  const _DirectEditDialog({
+    required this.title,
+    required this.controller,
+    required this.min,
+    required this.max,
   });
 
-  final IconData icon;
-  final bool enabled;
-  final VoidCallback onTap;
+  final String title;
+  final TextEditingController controller;
+  final int min;
+  final int max;
+
+  @override
+  State<_DirectEditDialog> createState() => _DirectEditDialogState();
+}
+
+class _DirectEditDialogState extends State<_DirectEditDialog> {
+  String? _error;
+
+  void _submit() {
+    final parsed = int.tryParse(widget.controller.text.trim());
+    if (parsed == null) {
+      setState(() => _error = 'invalid');
+      return;
+    }
+    if (parsed < widget.min || parsed > widget.max) {
+      setState(() => _error = 'range');
+      return;
+    }
+    Navigator.pop(context, parsed);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTap(
-      enabled: enabled,
-      onTap: onTap,
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: enabled ? AppColors.primary : AppColors.textLabel.withValues(alpha: 0.35),
-          borderRadius: BorderRadius.circular(22),
-          boxShadow: enabled
-              ? [
-                  BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.35),
-                    blurRadius: 6,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
-              : null,
+    final l10n = AppLocalizations.of(context);
+
+    return AlertDialog(
+      title: Text(widget.title),
+      content: TextField(
+        controller: widget.controller,
+        keyboardType: TextInputType.number,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        autofocus: true,
+        decoration: InputDecoration(
+          suffixText: l10n.secondsUnit.trim(),
+          errorText: _error == 'range'
+              ? l10n.directEditRange(widget.min, widget.max)
+              : _error != null
+                  ? l10n.directEditInvalid
+                  : null,
         ),
-        child: Icon(icon, color: AppColors.textOnPrimary, size: 22),
+        onSubmitted: (_) => _submit(),
       ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        FilledButton(
+          onPressed: _submit,
+          child: Text(l10n.ok),
+        ),
+      ],
     );
   }
 }

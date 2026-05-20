@@ -81,16 +81,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get ok => 'OK';
+
+  @override
+  String get directEditInvalid => 'Enter a valid number';
+
+  @override
+  String directEditRange(int min, int max) {
+    return 'Enter a value between $min and $max seconds';
+  }
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageEnglishSubtitle => 'Default';
+
+  @override
   String get languageKorean => '한국어';
 
   @override
   String get languageKoreanSubtitle => 'Korean';
 
   @override
-  String get languageEnglish => 'English';
+  String get languageJapanese => '日本語';
 
   @override
-  String get languageEnglishSubtitle => 'English';
+  String get languageJapaneseSubtitle => 'Japanese';
+
+  @override
+  String get languageChinese => '中文';
+
+  @override
+  String get languageChineseSubtitle => 'Chinese';
 
   @override
   String get aboutMe => 'About me';

@@ -3,6 +3,7 @@ import 'package:track/l10n/app_localizations.dart';
 
 import '../models/lane_pace_result.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_spacing.dart';
 
 /// 전 레인 페이스 그리드 (4×2).
 class AllLanesList extends StatelessWidget {
@@ -21,33 +22,31 @@ class AllLanesList extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.cardWhite,
-        borderRadius: BorderRadius.circular(16),
+        color: AppColors.cardWhite.withValues(alpha: 0.85),
+        borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
         border: Border.all(
-          color: AppColors.textLabel.withValues(alpha: 0.12),
+          color: AppColors.textLabel.withValues(alpha: 0.1),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.sm,
+          AppSpacing.sm,
+          AppSpacing.sm,
+          AppSpacing.xs + 4,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               l10n.allLanesPace,
               style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: AppColors.textLabel,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textMuted,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppSpacing.xs),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -69,7 +68,10 @@ class AllLanesList extends StatelessWidget {
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     border: isSelected
-                        ? Border.all(color: AppColors.primary, width: 1.5)
+                        ? Border.all(
+                            color: AppColors.primary.withValues(alpha: 0.6),
+                            width: 1,
+                          )
                         : null,
                   ),
                   child: Column(
@@ -80,10 +82,10 @@ class AllLanesList extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.w500,
+                              isSelected ? FontWeight.w600 : FontWeight.w400,
                           color: isSelected
-                              ? AppColors.primary
-                              : AppColors.textLabel,
+                              ? AppColors.primary.withValues(alpha: 0.85)
+                              : AppColors.textMuted,
                         ),
                       ),
                       Text(
@@ -91,8 +93,10 @@ class AllLanesList extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.w600,
-                          color: AppColors.textPrimary,
+                              isSelected ? FontWeight.w600 : FontWeight.w500,
+                          color: isSelected
+                              ? AppColors.textPrimary
+                              : AppColors.textMuted,
                         ),
                       ),
                     ],

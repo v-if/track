@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:track/l10n/app_localizations.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/app_spacing.dart';
 
 class PaceGuideBanner extends StatelessWidget {
   const PaceGuideBanner({
@@ -22,53 +23,36 @@ class PaceGuideBanner extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.guideBg,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.primary.withValues(alpha: 0.12),
-        ),
+        color: AppColors.guideBg.withValues(alpha: 0.65),
+        borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.sm,
+          vertical: AppSpacing.xs + 4,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 28,
-                  height: 28,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Icon(
-                    Icons.lightbulb_outline,
-                    size: 16,
-                    color: AppColors.primary,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  l10n.paceGuideTitle,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ],
+            Text(
+              l10n.paceGuideTitle,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textMuted,
+              ),
             ),
             const SizedBox(height: 6),
             AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 150),
               child: Text(
                 message,
                 key: ValueKey<String>(message),
                 style: const TextStyle(
-                  fontSize: 13,
-                  height: 1.45,
-                  color: AppColors.textPrimary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5,
+                  color: AppColors.textMuted,
                 ),
               ),
             ),

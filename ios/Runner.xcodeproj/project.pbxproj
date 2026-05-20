@@ -191,6 +191,8 @@
 			knownRegions = (
 				en,
 				ko,
+				ja,
+				zh,
 				Base,
 			);
 			mainGroup = 97C146E51CF9000F007C117D;

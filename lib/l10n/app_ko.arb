@@ -41,10 +41,23 @@
   "resetDialogTitle": "입력 초기화",
   "resetDialogMessage": "레인 1, 랩 카운트 1, 목표 시간 90초로 되돌립니다.",
   "cancel": "취소",
+  "ok": "확인",
+  "directEditInvalid": "숫자를 입력하세요",
+  "directEditRange": "{min}–{max}초 범위로 입력하세요",
+  "@directEditRange": {
+    "placeholders": {
+      "min": { "type": "int" },
+      "max": { "type": "int" }
+    }
+  },
+  "languageEnglish": "English",
+  "languageEnglishSubtitle": "기본",
   "languageKorean": "한국어",
   "languageKoreanSubtitle": "Korean",
-  "languageEnglish": "English",
-  "languageEnglishSubtitle": "영어",
+  "languageJapanese": "日本語",
+  "languageJapaneseSubtitle": "Japanese",
+  "languageChinese": "中文",
+  "languageChineseSubtitle": "Chinese",
   "aboutMe": "About me",
   "aboutMeSubtitle": "개발자 정보",
   "devVersion": "개발 버전 v{version} ({build})",

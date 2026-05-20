@@ -13,6 +13,7 @@ abstract final class AppColors {
   // 텍스트
   static const textPrimary = Color(0xFF222222);
   static const textLabel = Color(0xFF777777);
+  static const textMuted = Color(0xFF666666);
   static const textOnPrimary = Color(0xFFFFFFFF);
 
   // 서피스
